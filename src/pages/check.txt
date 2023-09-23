@@ -1,0 +1,13 @@
+fetch('http://worldtimeapi.org/api/timezone/Asia/Kolkata', requestOptions)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+
+                if (data) {
+                  console.log(data.datetime)
+                } else {
+                    this.setState({ loginError: true, errorMessage: data.message });
+                }
+
+            })
+           

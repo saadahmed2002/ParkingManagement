@@ -1,7 +1,7 @@
 import React from 'react';
 import { Row, Jumbotron, Button, CardColumns, Card } from 'react-bootstrap';
 import { Col } from 'react-bootstrap';
-
+import './page.css'
 class Initialize extends React.Component {
     constructor(props) {
         super(props);
@@ -45,17 +45,20 @@ class Initialize extends React.Component {
     render() {
         let { zone } = this.state;
         return (
-            <div>Initialize new parking lot here...
-                <Jumbotron>
-                    <Row>
-                        <Col>
-                            {zone && zone.length <= 25 ? <Button className="mlr-10" variant="outline-primary" onClick={this.createZone.bind(this)}>Create Parking Zone</Button> : null}
-                            {zone && zone.length > 1 ? <Button className="mlr-10" variant="outline-danger" onClick={this.deleteZone.bind(this)}>Delete Parking Zone</Button> : null}
+            <div className=''>
+                <h1 className='my-2 text-light'>
+                    Initialize new parking lot here...
+                    </h1>
+                <Jumbotron className='page'>
+                    <Row >
+                        <Col className=''>
+                            {zone && zone.length <= 25 ? <Button className="mlr-10" variant="outline-light" onClick={this.createZone.bind(this)}>Create Parking Zone</Button> : null}
+                            {zone && zone.length > 1 ? <Button className="mlr-10 bg-dark" variant="outline-danger " onClick={this.deleteZone.bind(this)}>Delete Parking Zone</Button> : null}
 
                         </Col>
                         <Col></Col>
                     </Row>
-                    <CardColumns className="parking-space-list">
+                    <CardColumns className="parking-space-list ">
                         {zone && zone.map((v, i, a) => (
                             <Card key={i} className="parking-item available">
                                 <Card.Body>

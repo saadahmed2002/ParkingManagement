@@ -1,5 +1,6 @@
 import React from 'react';
 import { Table } from 'react-bootstrap';
+import './page.css'
 
 class Report extends React.PureComponent {
     constructor(props) {
@@ -23,9 +24,11 @@ class Report extends React.PureComponent {
     render() {
         let { reportData } = this.state;
         return (
-            <div>
+            <div className='p-3 rounded page'>
+         
+            <div className='rounded-lg bg-light'>
                 <div>
-                    <Table responsive="sm">
+                    <Table responsive="sm p-2 " >
                         <thead>
                             <tr>
                                 <th>Parking Zone</th>
@@ -51,6 +54,8 @@ class Report extends React.PureComponent {
                 </div>
 
 
+            </div>
+                   
             </div>
         )
     }

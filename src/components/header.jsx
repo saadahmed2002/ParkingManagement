@@ -21,17 +21,17 @@ const Header = () => {
         role = loggedinUser.u_type;
     }
     return (
-        <Navbar bg="light" expand="lg">
-            <Navbar.Brand href="/dashboard">Parking Management</Navbar.Brand>
+        <Navbar className="bg-info" expand="lg">
+            <Navbar.Brand className='bg-light p-2 rounded' href="/dashboard">SISTec Parking Management</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav" >
-                <Nav className="mr-auto">
+            <Navbar.Collapse id="basic-navbar-nav" className='text-light' >
+                <Nav className="mr-auto text-primary">
                     {loggedinUser !== null ? <NavLink href="/dashboard">Dashboard</NavLink> : null}
                     {canInitialize ? <NavLink href="/initialize">Initialize</NavLink> : null}
                     {canSeeReports ? <NavLink href="/report">Reports</NavLink> : null}
                 </Nav>
                 <span className="mlr-10">{role === '' ? "" : role === "agent" ? "Booking Counter Agent" : "Parking Zone Assistant"}</span>
-                <Button variant="outline-success" onClick={signoutFunction.bind()}>Sign Out</Button>
+                {loggedinUser !== null ? <Button className='bg-light' variant="outline-success" onClick={signoutFunction.bind()}>Sign Out</Button> :null}
             </Navbar.Collapse>
         </Navbar>
     );

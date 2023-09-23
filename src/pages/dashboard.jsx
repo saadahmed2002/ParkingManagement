@@ -2,12 +2,14 @@ import React from 'react';
 import { Jumbotron, Card, CardColumns, Row, Button, Form, Modal } from 'react-bootstrap';
 //import parkingSpace from '../model/ParkingSpaceList';
 import { Col } from 'react-bootstrap';
+import './page.css'
+
 
 const BookingModal = ({ showParkingModal, bookingData: { title, is_available, vehicle_no, zone_id }, bookParkingHandler, closeModal }) => {
     return (
         <Modal show={showParkingModal} centered size="sm" >
             <Modal.Header>
-                <Modal.Title>Book a Parking Lot</Modal.Title>
+                <Modal.Title className='primary'>Book a Parking Lot</Modal.Title>
             </Modal.Header>
             <Form onSubmit={bookParkingHandler}>
                 <Modal.Body>
@@ -46,6 +48,7 @@ class Dashboard extends React.Component {
         let { value } = e.currentTarget;
         this.setState({ filterZone: value });
     }
+    
     bookParking(parking) {
         this.setState({ showParkingModal: true, bookingParkingState: parking });
     }
@@ -74,6 +77,7 @@ class Dashboard extends React.Component {
                 this.setState({ parkingSpaceList: parkings, showParkingModal: false })
             })
             .catch(err => { console.log(err) })
+            window.location = '/'
 
     }
     bookParkingHandler(e) {
@@ -91,6 +95,7 @@ class Dashboard extends React.Component {
             headers: myHeaders,
             body: JSON.stringify(parkingDataBody)
         };
+        
         fetch('http://localhost:3005/api/bookParking', requestOptions)
             .then(res => res.json())
             .then(res => {
@@ -106,6 +111,8 @@ class Dashboard extends React.Component {
                 this.setState({ parkingSpaceList: parkings, showParkingModal: false })
             })
             .catch(err => { console.log(err) })
+            window.location='/'
+               
     }
     closeModal(e) {
         this.setState({ showParkingModal: false })
@@ -136,7 +143,7 @@ class Dashboard extends React.Component {
         let { filterZone, parkingSpaceList, parkingZoneList, previlage: { canBookParking } } = this.state;
         return (
             <div>
-                <Jumbotron>
+                <Jumbotron className='page'>
                     <Row>
                         {/* {canBookParking ? (
                             <Col>
@@ -146,16 +153,16 @@ class Dashboard extends React.Component {
                             </Col>)
                             : null} */}
                         <Col>
-                            <Form.Control as="select" className="pull-right w-auto mlr-10" value={filterZone} onChange={this.filterZoneHandler.bind(this)} name="filter-zone">
+                            <Form.Control as="select" className="pull-right w-auto mlr-10 " value={filterZone} onChange={this.filterZoneHandler.bind(this)} name="filter-zone">
                                 <option value="All">All</option>
                                 {parkingZoneList && parkingZoneList.map((v, i) => (
                                     <option key={i} value={v}>Zone {v}</option>
                                 ))}
                             </Form.Control>
-                            <Form.Label className="pull-right w-auto m-7">Filter by Zone: </Form.Label>
+                            <Form.Label className="pull-right w-auto p-2 hed text-light">Filter by Zone: </Form.Label>
                         </Col>
                     </Row>
-                    <CardColumns className="parking-space-list">
+                    <CardColumns className="parking-space-list page2 bg-dark rounded my-2">
                         {
                             parkingSpaceList && parkingSpaceList.map((v, i, a) => (
                                 filterZone === "All" || v.zone_id === filterZone ? (

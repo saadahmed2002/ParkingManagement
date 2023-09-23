@@ -1,14 +1,17 @@
 import React from 'react';
 import { Form, Button, Row, Container } from 'react-bootstrap';
 import { Col } from 'react-bootstrap';
+import './page.css'
 
 const LoginForm = ({ validated, signInHandler, inputChangeHandler, user: { u_email, u_password }, loginError, errorMessage }) => {
     return (
-        <Form noValidate validated={validated} onSubmit={signInHandler}>
-            <h4>Welcome to Parking Management</h4>
-            <Form.Group controlId="signinEmail">
-                <Form.Label>Email address*</Form.Label>
-                <Form.Control type="email" placeholder="Enter email" name="u_email" value={u_email} onChange={inputChangeHandler} required />
+        <Form className='forms p-4 border q'noValidate validated={validated} onSubmit={signInHandler}>
+           <div className='heading'>
+            <h4 className='' >Welcome to Parking Management</h4>
+            </div> 
+            <Form.Group className=' my-3' controlId="signinEmail">
+                <Form.Label className='email' >Email address*</Form.Label>
+                <Form.Control  type="email " placeholder="Enter email" name="u_email" value={u_email} onChange={inputChangeHandler} required />
             </Form.Group>
 
             <Form.Group controlId="signinPassword">
@@ -17,9 +20,13 @@ const LoginForm = ({ validated, signInHandler, inputChangeHandler, user: { u_ema
             </Form.Group>
 
             {loginError ? <div className="error m-10"><span>{errorMessage}</span></div> : null}
-            <Button variant="primary" type="submit">
+           <div className=" flex ">
+           <Button className='divs' type="submit">
                 Sign In
-            </Button>
+            </Button> 
+            <span className='mx-2 '></span>
+          
+           </div>
         </Form>
     );
 }
@@ -75,7 +82,7 @@ class Index extends React.Component {
                 console.log(data)
 
                 if (data.success) {
-                    console.log(" data ", data);
+                    // console.log(" data dikhao ", data);
                     localStorage.setItem("loggedinUser", JSON.stringify(data.users));
                     this.setState({ loginError: false, errorMessage: '' });
                     window.location.pathname = "/dashboard";

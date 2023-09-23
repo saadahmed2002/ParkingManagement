@@ -10,6 +10,7 @@ import Initialize from './pages/initialize';
 import Report from './pages/report';
 import Header from './components/header';
 import Notfound from './pages/notfound';
+import Footer from './components/Footer';
 
 
 function App() {
@@ -23,18 +24,19 @@ function App() {
   }
   return (
     <Container fluid >
-      <Header></Header>
-      <Container>
+      <Header/>
+      <Container className='mt-4 bg-transparent'>
         <BrowserRouter>
           <Switch>
             <Route exact path="/"> {isLoggedIn ? <Dashboard /> : <Index />}</Route>
             <Route path="/dashboard">{isLoggedIn ? <Dashboard /> : <Redirect to="/" />}</Route>
             <Route path="/initialize">{isLoggedIn ? <Initialize /> : <Redirect to="/" />}</Route>
             <Route path="/report">{isLoggedIn ? <Report /> : <Redirect to="/" />}</Route>
-            <Route ><Notfound /></Route>
+            <Route ><Notfound/></Route>
           </Switch>
         </BrowserRouter>
       </Container>
+      <Footer/>
     </Container>
   );
 }
