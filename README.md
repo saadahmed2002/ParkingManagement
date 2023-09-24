@@ -51,8 +51,6 @@ with-in the system and been allocated to cars for certain period of time.
 7. react-router
 8. react-router-dom
 
-**If you are going to use your own DB then you need to replace below the line in src/server.js file** (replace <> data with your own dbuser, password and DB name):
-`const dbUri = "mongodb+srv://<DBuser>:<password>@cluster0-bdc8i.mongodb.net/<dbname>?retryWrites=true&w=majority"`
 
 ## Available Scripts
 
@@ -63,5 +61,3 @@ In the project directory, you can run:
 
 ### `npm start`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
